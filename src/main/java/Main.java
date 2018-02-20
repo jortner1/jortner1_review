@@ -19,43 +19,46 @@ final class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String accStr;  
 		String choice;
+		boolean success = false;
 		
-		if (args.length == 0) {
-			accStr = "20";
-			choice = "1";
+		while (!success) {
+			if (args.length == 0) {
+				accStr = "20";
+				choice = "1";
+				
+			}
+			else{
+				System.out.println("Enter your string of numbers: ");
+				accStr = br.readLine();
+				
+				System.out.println("Initial String: ");
+				System.out.println(accStr);
+				
+				System.out.println("Choose Algorithm: ");
+				choice = br.readLine();
+			}
+			SortDemoData data = new SortDemoData();
 			
-		}
-		else{
-			System.out.println("Enter your string of numbers: ");
-			accStr = br.readLine();
-			
-			System.out.println("Initial String: ");
-			System.out.println(accStr);
-			
-			System.out.println("Choose Algorithm: ");
-			choice = br.readLine();
-		}
-		SortDemoData data = new SortDemoData();
-		
-		try {
-
-			data.initializeArray(accStr);
-
-		
-			StringBuffer outputBuf = data.runAlgo(Integer.valueOf(choice).intValue());
-			
-			System.out.println("Result: ");
-			System.out.println(outputBuf.toString());
-		
-		 } catch (NoSuchElementException e) {
-			 System.out.println("Not enough numbers.");
-	     } catch (NumberFormatException e) {
-	    	 System.out.println("Please only use integer values. ");
-	     } catch (NegativeArraySizeException e) {
-	    	 System.out.println("Negative Array Size.");
-	     }  
-		
+			try {
 	
+				data.initializeArray(accStr);
+	
+			
+				StringBuffer outputBuf = data.runAlgo(Integer.valueOf(choice).intValue());
+				
+				System.out.println("Result: ");
+				System.out.println(outputBuf.toString());
+				success = true;
+			
+			 } catch (NoSuchElementException e) {
+				 System.out.println("Not enough numbers.");
+		     } catch (NumberFormatException e) {
+		    	 System.out.println("Please only use integer values. ");
+		     } catch (NegativeArraySizeException e) {
+		    	 System.out.println("Negative Array Size.");
+		     }  
+			
+		}
 	}
     
 }
